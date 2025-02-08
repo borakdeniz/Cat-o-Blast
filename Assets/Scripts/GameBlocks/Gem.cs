@@ -66,9 +66,12 @@ public class Gem : MonoBehaviour
 
         while (elapsedTime < animationDuration)
         {
-            transform.localScale = Vector3.Lerp(initialScale, Vector3.zero, elapsedTime / animationDuration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            if(transform != null)
+            {
+                transform.localScale = Vector3.Lerp(initialScale, Vector3.zero, elapsedTime / animationDuration);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
         }
 
         Destroy(gameObject);

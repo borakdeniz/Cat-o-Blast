@@ -41,8 +41,21 @@ public class MatchFinder : MonoBehaviour
             }
         }
 
-        return currentMatches.Count > 1 ? currentMatches : new List<Gem>(); // Return empty list if no match found
+        if (currentMatches.Count > 1)
+        {
+            // apply damage to adjacent box obstacles
+            foreach (Gem matchedGem in currentMatches)
+            {
+                Vector2Int gemPos = boardManager.GetGemPosition(matchedGem);
+                DamageAdjacentBoxes(gemPos);
+            }
+
+            return currentMatches;
+        }
+
+        return new List<Gem>(); // return empty if no valid match found
     }
+
 
     private List<Gem> GetNeighbors(Gem gem)
     {
@@ -115,4 +128,29 @@ public class MatchFinder : MonoBehaviour
 
         return connectedGems;
     }
+
+    private void DamageAdjacentBoxes(Vector2Int gemPos)
+    {
+        // define adjacent positions (up, down, left, right)
+        Vector2Int[] adjacentPositions = new Vector2Int[]
+        {
+        new Vector2Int(gemPos.x, gemPos.y + 1), // up
+        new Vector2Int(gemPos.x, gemPos.y - 1), // down
+        new Vector2Int(gemPos.x + 1, gemPos.y), // right
+        new Vector2Int(gemPos.x - 1, gemPos.y)  // left
+        };
+
+        // loop through adjacent positions
+        foreach (Vector2Int adjacentPos in adjacentPositions)
+        {
+            Gem adjacentGem = boardManager.GetGemAtPosition(adjacentPos);
+
+            if (adjacentGem != null && adjacentGem is BoxObstacle boxObstacle)
+            {
+                // apply damage to the box
+                boxObstacle.TakeDamage();
+            }
+        }
+    }
+
 }

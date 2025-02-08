@@ -33,10 +33,6 @@ public class BoardManager : MonoBehaviour
         matchFinder = FindFirstObjectByType<MatchFinder>();
         ApplyLevelData();
         SetupBoard();
-
-        // test spawning some box obstacles
-        SpawnBoxObstacle(2, 2);
-        SpawnBoxObstacle(4, 1);
     }
 
 
@@ -143,8 +139,6 @@ public class BoardManager : MonoBehaviour
         boxObj.name = $"BoxObstacle ({col}, {row})";
     }
 
-
-
     // creates or finds a parent object for each column
     private Transform GetOrCreateColumnParent(int col)
     {
@@ -208,10 +202,8 @@ public class BoardManager : MonoBehaviour
 
             for (int row = rows - 1; row >= 0; row--)
             {
-                // check if the current gem is a box obstacle
                 if (boardGems[row, col] != null && boardGems[row, col].isObstacle)
                 {
-                    // reset empty slot count since obstacles block movement
                     emptySlots = 0;
                     continue;
                 }
@@ -235,9 +227,13 @@ public class BoardManager : MonoBehaviour
             }
         }
 
+        // find and update gem icons to match the match count
         matchFinder.FindAutoMatches();
+
+        // rename all gems in the hierarchy
         RenameAllGems();
     }
+
 
 
     // function to rename all gems with correct positions
@@ -269,5 +265,22 @@ public class BoardManager : MonoBehaviour
         }
         gem.transform.localPosition = targetPosition;
     }
+    public void ResetBoxDamageFlags()
+    {
+        for (int row = 0; row < rows; row++)
+        {
+            for (int col = 0; col < columns; col++)
+            {
+                Gem gem = boardGems[row, col];
+
+                if (gem is BoxObstacle box)
+                {
+                    // reset flag so the box can take damage next turn
+                    box.hasTakenDamageThisAction = false;
+                }
+            }
+        }
+    }
+
 
 }

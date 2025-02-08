@@ -19,15 +19,34 @@ public class CollapseManager : MonoBehaviour
         List<Gem> connectedGems = matchFinder.FindMatchesFromGem(clickedGem);
 
         // pop only if there’s a match
-        if (connectedGems.Count >= 2) 
+        if (connectedGems.Count >= 2)
         {
             foreach (Gem gem in connectedGems)
             {
-                StartCoroutine(gem.AnimateGemDestruction());
-                RemoveGemFromBoard(gem);
+                // check if the gem has a sprite before removing it
+                SpriteRenderer spriteRenderer = gem.GetComponent<SpriteRenderer>();
+
+                if (spriteRenderer == null || spriteRenderer.sprite == null)
+                {
+                    RemoveGemFromBoard(gem);
+                    Destroy(gem.gameObject);
+                }
+                else
+                {
+                    StartCoroutine(gem.AnimateGemDestruction());
+                    RemoveGemFromBoard(gem);
+                }
             }
+
+            // update board after removals
+            boardManager.UpdateBoard();
+
+            // reset box obstacle damage flags at the end of the move
+            boardManager.ResetBoxDamageFlags();
         }
     }
+
+
 
     // function to remove the gem from the board
     private void RemoveGemFromBoard(Gem gem)
@@ -44,4 +63,5 @@ public class CollapseManager : MonoBehaviour
             }
         }
     }
+
 }
