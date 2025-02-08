@@ -6,11 +6,19 @@ public class CollapseManager : MonoBehaviour
     public static int conditionA = 4, conditionB = 7, conditionC = 9;
     public BoardManager boardManager;
 
+    public MatchFinder matchFinder;
+
+    private void Awake()
+    {
+        boardManager = FindFirstObjectByType<BoardManager>();
+        matchFinder = FindFirstObjectByType<MatchFinder>();
+    }
+
     public void HandleGemClick(Gem clickedGem)
     {
-        List<Gem> connectedGems = GetConnectedGems(clickedGem);
+        List<Gem> connectedGems = matchFinder.FindMatchesFromGem(clickedGem);
 
-        if (connectedGems.Count >= 2)
+        if (connectedGems.Count >= 2) // Pop only if there’s a match
         {
             foreach (Gem gem in connectedGems)
             {
@@ -18,10 +26,11 @@ public class CollapseManager : MonoBehaviour
                 RemoveGemFromBoard(gem);
             }
 
-            boardManager.UpdateBoard();
+            boardManager.UpdateBoard(); // ✅ Updates board and renames gems
         }
     }
 
+    // ✅ Function to remove the gem from the board
     private void RemoveGemFromBoard(Gem gem)
     {
         for (int row = 0; row < boardManager.rows; row++)
@@ -36,6 +45,7 @@ public class CollapseManager : MonoBehaviour
             }
         }
     }
+
 
     private List<Gem> GetConnectedGems(Gem startGem)
     {
@@ -77,4 +87,5 @@ public class CollapseManager : MonoBehaviour
             FindConnectedGemsRecursive(row, col - 1, gemColorId, connectedGems, visited);
         }
     }
+
 }

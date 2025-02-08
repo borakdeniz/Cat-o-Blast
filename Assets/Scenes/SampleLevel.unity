@@ -305,6 +305,7 @@ GameObject:
   - component: {fileID: 328130154}
   - component: {fileID: 328130153}
   - component: {fileID: 328130155}
+  - component: {fileID: 328130156}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -340,6 +341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boardManager: {fileID: 328130154}
+  matchFinder: {fileID: 0}
 --- !u!114 &328130154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,6 +408,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &328130156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328130151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65c0b368a52896248b3f98064c0bb48b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentMatches: []
+  autoMatches: []
 --- !u!1 &430526662
 GameObject:
   m_ObjectHideFlags: 0

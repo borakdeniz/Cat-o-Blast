@@ -12,6 +12,7 @@ public class BoardManager : MonoBehaviour
 
     public Gem[,] boardGems;
     public GemPool gemPool;
+    private MatchFinder matchFinder;
 
     [HideInInspector]
     public int totalColors;
@@ -24,9 +25,16 @@ public class BoardManager : MonoBehaviour
 
     private void Start()
     {
+        matchFinder = FindObjectOfType<MatchFinder>();
         ApplyLevelData();
         SetupBoard();
     }
+
+    private void Update()
+    {
+        UpdateBoard();
+    }
+    
 
     private void ApplyLevelData()
     {
@@ -38,10 +46,6 @@ public class BoardManager : MonoBehaviour
             spawnHeight = currentLevelData.spawnHeight;
             dropDuration = currentLevelData.dropDuration;
             neighborMatchProbability = currentLevelData.neighborMatchProbability;
-
-            CollapseManager.conditionA = currentLevelData.conditionA;
-            CollapseManager.conditionB = currentLevelData.conditionB;
-            CollapseManager.conditionC = currentLevelData.conditionC;
         }
         else
         {
@@ -49,11 +53,12 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+
     public void SetupBoard()
     {
         boardGems = new Gem[rows, columns];
         InitializeBoard();
-        RefreshGemIcons();
+        RefreshGemMatches();
     }
 
     void InitializeBoard()
@@ -70,7 +75,10 @@ public class BoardManager : MonoBehaviour
     public void SpawnGem(int row, int col)
     {
         GameObject gemObj = gemPool.GetGem();
-        gemObj.transform.SetParent(transform);
+
+        // Find or create the column parent in the hierarchy
+        Transform columnParent = GetOrCreateColumnParent(col);
+        gemObj.transform.SetParent(columnParent); // Assign gem to its column group
 
         Vector3 startPosition = new Vector3(col, spawnHeight, 0);
         gemObj.transform.localPosition = startPosition;
@@ -90,8 +98,27 @@ public class BoardManager : MonoBehaviour
         boardGems[row, col] = gem;
         gem.UpdateGemSprite(1);
 
+        // ✅ Set the name correctly in Unity Hierarchy (Column first, then Row)
+        gemObj.name = $"Gem ({col}, {row})"; // Column first, Row second
+
         StartCoroutine(DropGem(gem, row, col));
     }
+
+    // ✅ Creates or finds a parent object for each column
+    private Transform GetOrCreateColumnParent(int col)
+    {
+        string columnName = $"Column {col}";
+        GameObject columnObj = GameObject.Find(columnName);
+
+        if (columnObj == null) // If it doesn't exist, create it
+        {
+            columnObj = new GameObject(columnName);
+            columnObj.transform.SetParent(transform); // Parent to BoardManager
+        }
+
+        return columnObj.transform;
+    }
+
 
 
 
@@ -108,6 +135,46 @@ public class BoardManager : MonoBehaviour
             yield return null;
         }
         gem.transform.localPosition = targetPos;
+    }
+
+    public void RefreshGemMatches()
+    {
+        for (int row = 0; row < rows; row++)
+        {
+            for (int col = 0; col < columns; col++)
+            {
+                Gem gem = boardGems[row, col];
+                if (gem == null) continue;
+
+                List<Gem> connectedGems = matchFinder.FindMatchesFromGem(gem);
+                foreach (Gem matchedGem in connectedGems)
+                {
+                    matchedGem.UpdateGemSprite(connectedGems.Count);
+                }
+            }
+        }
+    }
+
+    public Vector2Int GetGemPosition(Gem gem)
+    {
+        for (int row = 0; row < rows; row++)
+        {
+            for (int col = 0; col < columns; col++)
+            {
+                if (boardGems[row, col] == gem)
+                    return new Vector2Int(col, row);
+            }
+        }
+        return Vector2Int.one * -1;
+    }
+
+    public Gem GetGemAtPosition(Vector2Int position)
+    {
+        if (position.x >= 0 && position.x < columns && position.y >= 0 && position.y < rows)
+        {
+            return boardGems[position.y, position.x];
+        }
+        return null;
     }
 
     public void UpdateBoard()
@@ -128,12 +195,30 @@ public class BoardManager : MonoBehaviour
                     StartCoroutine(MoveGemDown(boardGems[row + emptySlots, col], row + emptySlots, col));
                 }
             }
+
             for (int i = 0; i < emptySlots; i++)
             {
                 SpawnGem(i, col);
             }
         }
-        StartCoroutine(DelayedRefreshIcons(dropDuration));
+
+        matchFinder.FindAutoMatches();
+        RenameAllGems();
+    }
+
+    // function to rename all gems with correct positions
+    private void RenameAllGems()
+    {
+        for (int row = 0; row < rows; row++)
+        {
+            for (int col = 0; col < columns; col++)
+            {
+                if (boardGems[row, col] != null)
+                {
+                    boardGems[row, col].gameObject.name = $"Gem ({col}, {row})"; // Column first, then Row
+                }
+            }
+        }
     }
 
     private IEnumerator MoveGemDown(Gem gem, int newRow, int col)
@@ -151,45 +236,4 @@ public class BoardManager : MonoBehaviour
         gem.transform.localPosition = targetPosition;
     }
 
-    private void RefreshGemIcons()
-    {
-        bool[,] visited = new bool[rows, columns];
-        for (int row = 0; row < rows; row++)
-        {
-            for (int col = 0; col < columns; col++)
-            {
-                if (visited[row, col] || boardGems[row, col] == null)
-                    continue;
-                List<Gem> connectedGroup = new List<Gem>();
-                FindConnectedGems(row, col, boardGems[row, col].gemColorId, connectedGroup, visited);
-                foreach (Gem gem in connectedGroup)
-                {
-                    gem.UpdateGemSprite(connectedGroup.Count);
-                }
-            }
-        }
-    }
-
-    private void FindConnectedGems(int row, int col, int gemColorId, List<Gem> group, bool[,] visited)
-    {
-        if (row < 0 || row >= rows || col < 0 || col >= columns)
-            return;
-        if (visited[row, col])
-            return;
-        Gem gem = boardGems[row, col];
-        if (gem == null || gem.gemColorId != gemColorId)
-            return;
-        visited[row, col] = true;
-        group.Add(gem);
-        FindConnectedGems(row + 1, col, gemColorId, group, visited);
-        FindConnectedGems(row - 1, col, gemColorId, group, visited);
-        FindConnectedGems(row, col + 1, gemColorId, group, visited);
-        FindConnectedGems(row, col - 1, gemColorId, group, visited);
-    }
-
-    private IEnumerator DelayedRefreshIcons(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        RefreshGemIcons();
-    }
 }

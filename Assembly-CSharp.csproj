@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Core\LevelData.cs" />
     <Compile Include="Assets\Scripts\Managers\CollapseManager.cs" />
+    <Compile Include="Assets\Scripts\Core\MatchFinder.cs" />
     <Compile Include="Assets\Scripts\Core\Gem.cs" />
     <Compile Include="Assets\Scripts\Core\GemPool.cs" />
     <Compile Include="Assets\Scripts\Managers\GemColorManager.cs" />
