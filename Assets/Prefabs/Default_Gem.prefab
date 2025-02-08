@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7496403098421835075}
   - component: {fileID: 2803115953111449524}
   m_Layer: 0
-  m_Name: _PrefabBLOCK
-  m_TagString: Untagged
+  m_Name: Default_Gem
+  m_TagString: Gem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gemColorId: 0
+  isObstacle: 0
   isMarkedForDestruction: 0
 --- !u!212 &7496403098421835075
 SpriteRenderer:

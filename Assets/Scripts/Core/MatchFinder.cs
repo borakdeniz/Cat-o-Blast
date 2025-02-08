@@ -74,11 +74,18 @@ public class MatchFinder : MonoBehaviour
                     // Track the matches
                     foreach (Gem gem in connectedGems)
                     {
-                        if (connectedGems.Count >= 2)
+                        if(!(gem is BoxObstacle) && gem != null)
                         {
-                            autoMatches.Add(gem);
+                            if (connectedGems.Count >= 2)
+                            {
+                                autoMatches.Add(gem);
+                            }
+                            gem.UpdateGemSprite(connectedGems.Count);
                         }
-                        gem.UpdateGemSprite(connectedGems.Count);
+                        else
+                        {
+                            break;
+                        }
                     }
                 }
             }

@@ -14,6 +14,11 @@ public class BoardManager : MonoBehaviour
     public GemPool gemPool;
     private MatchFinder matchFinder;
 
+    public GameObject boxObstaclePrefab; // assign in unity inspector
+    public float boxSpawnChance = 0.1f; // 10% chance to spawn an obstacle
+
+
+
     [HideInInspector]
     public int totalColors;
     [HideInInspector]
@@ -25,10 +30,15 @@ public class BoardManager : MonoBehaviour
 
     private void Start()
     {
-        matchFinder = FindObjectOfType<MatchFinder>();
+        matchFinder = FindFirstObjectByType<MatchFinder>();
         ApplyLevelData();
         SetupBoard();
+
+        // test spawning some box obstacles
+        SpawnBoxObstacle(2, 2);
+        SpawnBoxObstacle(4, 1);
     }
+
 
     private void Update()
     {
@@ -52,13 +62,10 @@ public class BoardManager : MonoBehaviour
             Debug.LogError("LevelData is not assigned!");
         }
     }
-
-
     public void SetupBoard()
     {
         boardGems = new Gem[rows, columns];
         InitializeBoard();
-        RefreshGemMatches();
     }
 
     void InitializeBoard()
@@ -67,18 +74,29 @@ public class BoardManager : MonoBehaviour
         {
             for (int col = 0; col < columns; col++)
             {
-                SpawnGem(row, col);
+                // 10% chance to spawn a box obstacle
+                if (Random.value < boxSpawnChance)
+                {
+                    SpawnBoxObstacle(row, col);
+                }
+                else
+                {
+                    SpawnGem(row, col);
+                }
             }
         }
     }
+
 
     public void SpawnGem(int row, int col)
     {
         GameObject gemObj = gemPool.GetGem();
 
-        // Find or create the column parent in the hierarchy
+        // find or create the column parent in the hierarchy
         Transform columnParent = GetOrCreateColumnParent(col);
-        gemObj.transform.SetParent(columnParent); // Assign gem to its column group
+
+        // assign gem to its column group
+        gemObj.transform.SetParent(columnParent); 
 
         Vector3 startPosition = new Vector3(col, spawnHeight, 0);
         gemObj.transform.localPosition = startPosition;
@@ -96,31 +114,54 @@ public class BoardManager : MonoBehaviour
         }
         gem.gemColorId = chosenColor;
         boardGems[row, col] = gem;
-        gem.UpdateGemSprite(1);
 
-        // ✅ Set the name correctly in Unity Hierarchy (Column first, then Row)
-        gemObj.name = $"Gem ({col}, {row})"; // Column first, Row second
+        // set the name correctly in Unity Hierarchy (Column first, then Row)
+        gemObj.name = $"Gem ({col}, {row})";
 
         StartCoroutine(DropGem(gem, row, col));
     }
 
-    // ✅ Creates or finds a parent object for each column
+    public void SpawnBoxObstacle(int row, int col)
+    {
+        // ensure the position is within bounds and not already occupied
+        if (row < 0 || row >= rows || col < 0 || col >= columns || boardGems[row, col] != null)
+            return;
+
+        GameObject boxObj = Instantiate(boxObstaclePrefab);
+
+        // find or create the column parent in the hierarchy
+        Transform columnParent = GetOrCreateColumnParent(col);
+
+        // assign box to its column group
+        boxObj.transform.SetParent(columnParent);
+        boxObj.transform.localPosition = new Vector3(col, -row, 0);
+
+        BoxObstacle box = boxObj.GetComponent<BoxObstacle>();
+        boardGems[row, col] = box;
+
+        // set the name correctly in unity hierarchy (column first, then row)
+        boxObj.name = $"BoxObstacle ({col}, {row})";
+    }
+
+
+
+    // creates or finds a parent object for each column
     private Transform GetOrCreateColumnParent(int col)
     {
         string columnName = $"Column {col}";
         GameObject columnObj = GameObject.Find(columnName);
 
-        if (columnObj == null) // If it doesn't exist, create it
+        // if it doesn't exist, create it
+        if (columnObj == null) 
         {
             columnObj = new GameObject(columnName);
-            columnObj.transform.SetParent(transform); // Parent to BoardManager
+
+            // parent to BoardManager
+            columnObj.transform.SetParent(transform); 
         }
 
         return columnObj.transform;
     }
-
-
-
 
     private IEnumerator DropGem(Gem gem, int row, int col)
     {
@@ -135,24 +176,6 @@ public class BoardManager : MonoBehaviour
             yield return null;
         }
         gem.transform.localPosition = targetPos;
-    }
-
-    public void RefreshGemMatches()
-    {
-        for (int row = 0; row < rows; row++)
-        {
-            for (int col = 0; col < columns; col++)
-            {
-                Gem gem = boardGems[row, col];
-                if (gem == null) continue;
-
-                List<Gem> connectedGems = matchFinder.FindMatchesFromGem(gem);
-                foreach (Gem matchedGem in connectedGems)
-                {
-                    matchedGem.UpdateGemSprite(connectedGems.Count);
-                }
-            }
-        }
     }
 
     public Vector2Int GetGemPosition(Gem gem)
@@ -182,8 +205,17 @@ public class BoardManager : MonoBehaviour
         for (int col = 0; col < columns; col++)
         {
             int emptySlots = 0;
+
             for (int row = rows - 1; row >= 0; row--)
             {
+                // check if the current gem is a box obstacle
+                if (boardGems[row, col] != null && boardGems[row, col].isObstacle)
+                {
+                    // reset empty slot count since obstacles block movement
+                    emptySlots = 0;
+                    continue;
+                }
+
                 if (boardGems[row, col] == null)
                 {
                     emptySlots++;
@@ -192,6 +224,7 @@ public class BoardManager : MonoBehaviour
                 {
                     boardGems[row + emptySlots, col] = boardGems[row, col];
                     boardGems[row, col] = null;
+
                     StartCoroutine(MoveGemDown(boardGems[row + emptySlots, col], row + emptySlots, col));
                 }
             }
@@ -205,6 +238,7 @@ public class BoardManager : MonoBehaviour
         matchFinder.FindAutoMatches();
         RenameAllGems();
     }
+
 
     // function to rename all gems with correct positions
     private void RenameAllGems()

@@ -14,6 +14,8 @@ public class GemColorData
 public class Gem : MonoBehaviour
 {
     public int gemColorId;
+    public bool isObstacle = false;
+
     private SpriteRenderer gemRenderer;
     private CollapseManager collapseManager;
     public bool isMarkedForDestruction = false;
@@ -21,17 +23,18 @@ public class Gem : MonoBehaviour
     private void Awake()
     {
         gemRenderer = GetComponent<SpriteRenderer>();
-        collapseManager = FindObjectOfType<CollapseManager>();
+        collapseManager = FindFirstObjectByType<CollapseManager>();
     }
 
     private void Start()
     {
-        UpdateGemSprite(1);
+        //UpdateGemSprite(1);
     }
 
     private void OnMouseDown()
     {
-        if (isMarkedForDestruction) return;
+        // obstacles cannot be clicked
+        if (isMarkedForDestruction || isObstacle) return; 
         collapseManager.HandleGemClick(this);
     }
 
@@ -39,14 +42,19 @@ public class Gem : MonoBehaviour
     {
         GemColorData colorData = GemColorManager.Instance.GetGemColorData(gemColorId);
 
-        if (adjacentGemCount > CollapseManager.conditionC)
-            gemRenderer.sprite = colorData.thirdSprite;
-        else if (adjacentGemCount > CollapseManager.conditionB)
-            gemRenderer.sprite = colorData.secondSprite;
-        else if (adjacentGemCount > CollapseManager.conditionA)
-            gemRenderer.sprite = colorData.firstSprite;
-        else
-            gemRenderer.sprite = colorData.defaultSprite;
+        // 6 is the ID for boxes,we want to avoid going through this process for obstacles
+        if (colorData != null) 
+        {
+            if (adjacentGemCount > CollapseManager.conditionC)
+                gemRenderer.sprite = colorData.thirdSprite;
+            else if (adjacentGemCount > CollapseManager.conditionB)
+                gemRenderer.sprite = colorData.secondSprite;
+            else if (adjacentGemCount > CollapseManager.conditionA)
+                gemRenderer.sprite = colorData.firstSprite;
+            else
+                gemRenderer.sprite = colorData.defaultSprite;
+        }
+
     }
 
     public IEnumerator AnimateGemDestruction()

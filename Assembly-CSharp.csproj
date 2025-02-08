@@ -61,12 +61,13 @@
     <Analyzer Include="D:\6000.0.29f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\GameBlocks\BoxObstacle.cs" />
     <Compile Include="Assets\Scripts\Core\LevelData.cs" />
     <Compile Include="Assets\Scripts\Managers\CollapseManager.cs" />
     <Compile Include="Assets\Scripts\Core\MatchFinder.cs" />
-    <Compile Include="Assets\Scripts\Core\Gem.cs" />
     <Compile Include="Assets\Scripts\Core\GemPool.cs" />
     <Compile Include="Assets\Scripts\Managers\GemColorManager.cs" />
+    <Compile Include="Assets\Scripts\GameBlocks\Gem.cs" />
     <Compile Include="Assets\Scripts\Managers\BoardManager.cs" />
   </ItemGroup>
   <ItemGroup>
