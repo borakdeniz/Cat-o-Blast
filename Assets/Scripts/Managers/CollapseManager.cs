@@ -4,38 +4,36 @@ using System.Collections.Generic;
 public class CollapseManager : MonoBehaviour
 {
     public static int conditionA = 4, conditionB = 7, conditionC = 9;
-    public BoardManager boardManager;
 
+    public BoardManager boardManager;
     public MatchFinder matchFinder;
+
+    // reference to the audio source
+    private AudioSource popSound; 
 
     private void Awake()
     {
         boardManager = FindFirstObjectByType<BoardManager>();
         matchFinder = FindFirstObjectByType<MatchFinder>();
+        popSound = GetComponent<AudioSource>(); 
     }
 
     public void HandleGemClick(Gem clickedGem)
     {
         List<Gem> connectedGems = matchFinder.FindMatchesFromGem(clickedGem);
 
-        // pop only if there’s a match
         if (connectedGems.Count >= 2)
         {
             foreach (Gem gem in connectedGems)
             {
-                // check if the gem has a sprite before removing it
-                SpriteRenderer spriteRenderer = gem.GetComponent<SpriteRenderer>();
+                StartCoroutine(gem.AnimateGemDestruction());
+                RemoveGemFromBoard(gem);
+            }
 
-                if (spriteRenderer == null || spriteRenderer.sprite == null)
-                {
-                    RemoveGemFromBoard(gem);
-                    Destroy(gem.gameObject);
-                }
-                else
-                {
-                    StartCoroutine(gem.AnimateGemDestruction());
-                    RemoveGemFromBoard(gem);
-                }
+            // play pop sound when a gem is removed
+            if (popSound != null)
+            {
+                popSound.Play();
             }
 
             // update board after removals
@@ -46,9 +44,6 @@ public class CollapseManager : MonoBehaviour
         }
     }
 
-
-
-    // function to remove the gem from the board
     public void RemoveGemFromBoard(Gem gem)
     {
         for (int row = 0; row < boardManager.rows; row++)
@@ -63,5 +58,4 @@ public class CollapseManager : MonoBehaviour
             }
         }
     }
-
 }

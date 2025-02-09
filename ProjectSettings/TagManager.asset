@@ -45,5 +45,8 @@ TagManager:
   - name: Gems
     uniqueID: 2189676441
     locked: 0
+  - name: Effects
+    uniqueID: 1965317111
+    locked: 0
   m_RenderingLayers:
   - Default

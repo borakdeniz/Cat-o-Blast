@@ -28,18 +28,21 @@ public class BoxObstacle : Gem
 
         if (health == 1)
         {
-            // activate the child to show damage state
             if (damageIndicator != null)
                 damageIndicator.gameObject.SetActive(true);
         }
         else if (health <= 0)
         {
+            BoardManager boardManager = FindFirstObjectByType<BoardManager>();
+
             if (boardManager != null)
             {
-                collapseManager.RemoveGemFromBoard(this);
+                boardManager.RemoveGemFromBoard(this); // remove from board first
             }
-            Destroy(gameObject); // fully destroy the obstacle
+
+            Destroy(gameObject); // fully remove the box
         }
     }
+
 
 }
