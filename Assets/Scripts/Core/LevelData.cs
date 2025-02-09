@@ -9,13 +9,12 @@ public class LevelData : ScriptableObject
     public int totalColors = 6;
 
     [Header("Block Spawn & Drop")]
-    public float spawnHeight = 2.0f;          
-    public float dropDuration = 0.3f;  // Drop Time
-    [Range(0f, 1f)]
-    public float neighborMatchProbability = 0.8f; // Eslesme olasiligi
+    public float spawnHeight = 2.0f;
 
-    [Header("Icon Thresholds")]
-    public int conditionA = 4;  
-    public int conditionB = 7;  
-    public int conditionC = 9;  
+    // drop time
+    public float dropDuration = 0.3f;  
+
+    [Range(0f, 1f)]
+    // probability for possible matches while creating board
+    public float neighborMatchProbability = 0.8f; 
 }

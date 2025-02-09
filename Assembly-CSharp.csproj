@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\GameBlocks\BoxObstacle.cs" />
+    <Compile Include="Assets\Scripts\Managers\LevelManager.cs" />
     <Compile Include="Assets\Scripts\Core\LevelData.cs" />
     <Compile Include="Assets\Scripts\Managers\CollapseManager.cs" />
     <Compile Include="Assets\Scripts\Core\MatchFinder.cs" />

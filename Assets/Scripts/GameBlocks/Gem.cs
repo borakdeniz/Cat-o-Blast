@@ -17,7 +17,7 @@ public class Gem : MonoBehaviour
     public bool isObstacle = false;
 
     private SpriteRenderer gemRenderer;
-    private CollapseManager collapseManager;
+    protected CollapseManager collapseManager;
     public bool isMarkedForDestruction = false;
 
     private void Awake()
@@ -42,7 +42,7 @@ public class Gem : MonoBehaviour
     {
         GemColorData colorData = GemColorManager.Instance.GetGemColorData(gemColorId);
 
-        // 6 is the ID for boxes,we want to avoid going through this process for obstacles
+        
         if (colorData != null) 
         {
             if (adjacentGemCount > CollapseManager.conditionC)

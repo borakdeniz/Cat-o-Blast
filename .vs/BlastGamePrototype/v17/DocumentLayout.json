@@ -3,24 +3,28 @@
   "WorkspaceRootPath": "D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{495F17D6-939B-3683-C463-9329C7D10123}|Assembly-CSharp.csproj|d:\\github\\cat-o-blast\\blastgameprototype\\assets\\scripts\\managers\\boardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{495F17D6-939B-3683-C463-9329C7D10123}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\managers\\boardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{495F17D6-939B-3683-C463-9329C7D10123}|Assembly-CSharp.csproj|d:\\github\\cat-o-blast\\blastgameprototype\\assets\\scripts\\core\\leveldata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{495F17D6-939B-3683-C463-9329C7D10123}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\core\\leveldata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{495F17D6-939B-3683-C463-9329C7D10123}|Assembly-CSharp.csproj|D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\assets\\scripts\\managers\\collapsemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{495F17D6-939B-3683-C463-9329C7D10123}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\managers\\collapsemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{495F17D6-939B-3683-C463-9329C7D10123}|Assembly-CSharp.csproj|D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\assets\\scripts\\gameblocks\\boxobstacle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{495F17D6-939B-3683-C463-9329C7D10123}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gameblocks\\boxobstacle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{495F17D6-939B-3683-C463-9329C7D10123}|Assembly-CSharp.csproj|D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\assets\\scripts\\gameblocks\\gem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{495F17D6-939B-3683-C463-9329C7D10123}|Assembly-CSharp.csproj|d:\\github\\cat-o-blast\\blastgameprototype\\assets\\scripts\\gameblocks\\gem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{495F17D6-939B-3683-C463-9329C7D10123}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gameblocks\\gem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{495F17D6-939B-3683-C463-9329C7D10123}|Assembly-CSharp.csproj|D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\assets\\scripts\\core\\gempool.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{495F17D6-939B-3683-C463-9329C7D10123}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\core\\gempool.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{495F17D6-939B-3683-C463-9329C7D10123}|Assembly-CSharp.csproj|D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\assets\\scripts\\managers\\boardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{495F17D6-939B-3683-C463-9329C7D10123}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\managers\\boardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{495F17D6-939B-3683-C463-9329C7D10123}|Assembly-CSharp.csproj|D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\assets\\scripts\\managers\\levelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{495F17D6-939B-3683-C463-9329C7D10123}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\managers\\levelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{495F17D6-939B-3683-C463-9329C7D10123}|Assembly-CSharp.csproj|D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\assets\\scripts\\gameblocks\\boxobstacle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{495F17D6-939B-3683-C463-9329C7D10123}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gameblocks\\boxobstacle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{495F17D6-939B-3683-C463-9329C7D10123}|Assembly-CSharp.csproj|D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\assets\\scripts\\managers\\gemcolormanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -29,6 +33,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{495F17D6-939B-3683-C463-9329C7D10123}|Assembly-CSharp.csproj|D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\assets\\scripts\\core\\matchfinder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{495F17D6-939B-3683-C463-9329C7D10123}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\core\\matchfinder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{495F17D6-939B-3683-C463-9329C7D10123}|Assembly-CSharp.csproj|D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\assets\\scripts\\core\\gempool.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{495F17D6-939B-3683-C463-9329C7D10123}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\core\\gempool.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,72 +46,97 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LevelData.cs",
+              "DocumentMoniker": "D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\Assets\\Scripts\\Core\\LevelData.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\LevelData.cs",
+              "ToolTip": "D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\Assets\\Scripts\\Core\\LevelData.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Core\\LevelData.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T11:44:19.11Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "LevelManager.cs",
+              "DocumentMoniker": "D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\Assets\\Scripts\\Managers\\LevelManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\LevelManager.cs",
+              "ToolTip": "D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\Assets\\Scripts\\Managers\\LevelManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Managers\\LevelManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T11:39:03.421Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "GemPool.cs",
               "DocumentMoniker": "D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\Assets\\Scripts\\Core\\GemPool.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\GemPool.cs",
               "ToolTip": "D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\Assets\\Scripts\\Core\\GemPool.cs",
               "RelativeToolTip": "Assets\\Scripts\\Core\\GemPool.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABoAAAAFAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAA6wBoAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-08T17:01:04.997Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Gem.cs",
               "DocumentMoniker": "D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\Assets\\Scripts\\GameBlocks\\Gem.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GameBlocks\\Gem.cs",
               "ToolTip": "D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\Assets\\Scripts\\GameBlocks\\Gem.cs",
               "RelativeToolTip": "Assets\\Scripts\\GameBlocks\\Gem.cs",
-              "ViewState": "AQIAAC0AAAAAAAAAAAD4v0QAAAAhAAAA",
+              "ViewState": "AQIAABsAAAAAAAAAAAAowC8AAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-08T16:13:45.649Z"
+              "WhenOpened": "2025-02-08T16:13:45.649Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "BoxObstacle.cs",
               "DocumentMoniker": "D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\Assets\\Scripts\\GameBlocks\\BoxObstacle.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GameBlocks\\BoxObstacle.cs",
               "ToolTip": "D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\Assets\\Scripts\\GameBlocks\\BoxObstacle.cs",
               "RelativeToolTip": "Assets\\Scripts\\GameBlocks\\BoxObstacle.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACQAAAAkAAAA",
+              "ViewState": "AQIAABYAAAAAAAAAAAAiwCYAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-08T16:13:18.266Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "BoardManager.cs",
               "DocumentMoniker": "D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\Assets\\Scripts\\Managers\\BoardManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\BoardManager.cs",
               "ToolTip": "D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\Assets\\Scripts\\Managers\\BoardManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\Managers\\BoardManager.cs",
-              "ViewState": "AQIAAO4AAAAAAAAAAAAswAABAAAJAAAA",
+              "ViewState": "AQIAAE4AAAAAAAAAAAAIwEcBAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-08T01:11:53.038Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-08T01:11:53.038Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "MatchFinder.cs",
               "DocumentMoniker": "D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\Assets\\Scripts\\Core\\MatchFinder.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\MatchFinder.cs",
               "ToolTip": "D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\Assets\\Scripts\\Core\\MatchFinder.cs",
               "RelativeToolTip": "Assets\\Scripts\\Core\\MatchFinder.cs",
-              "ViewState": "AQIAACEAAAAAAAAAAAAmwDMAAAAAAAAA",
+              "ViewState": "AQIAAHkAAAAAAAAAAAAcwDMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-08T15:21:17.563Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "GemColorManager.cs",
               "DocumentMoniker": "D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\Assets\\Scripts\\Managers\\GemColorManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\GemColorManager.cs",
@@ -121,9 +154,10 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\CollapseManager.cs",
               "ToolTip": "D:\\Github\\Cat-o-Blast\\BlastGamePrototype\\Assets\\Scripts\\Managers\\CollapseManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\Managers\\CollapseManager.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAmwCIAAAARAAAA",
+              "ViewState": "AQIAAAoAAAAAAAAAAAA1wBkAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-08T02:12:05.291Z"
+              "WhenOpened": "2025-02-08T02:12:05.291Z",
+              "EditorCaption": ""
             }
           ]
         }

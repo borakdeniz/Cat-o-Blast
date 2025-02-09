@@ -49,7 +49,7 @@ public class CollapseManager : MonoBehaviour
 
 
     // function to remove the gem from the board
-    private void RemoveGemFromBoard(Gem gem)
+    public void RemoveGemFromBoard(Gem gem)
     {
         for (int row = 0; row < boardManager.rows; row++)
         {

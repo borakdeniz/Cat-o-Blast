@@ -354,10 +354,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96fd0a0de8395ae48977cea7f842ac56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevelData: {fileID: 11400000, guid: 0b112c566654ef142b0e7e01be184367, type: 2}
+  currentLevelData: {fileID: 11400000, guid: 3d43e313ee8cb3f4f8fc5072870deaa0, type: 2}
   rows: 0
   columns: 0
   gemPool: {fileID: 868054239}
+  boxObstaclePrefab: {fileID: 7855275115356244993, guid: 202c68c1a62f99248b5db41d763b8611, type: 3}
+  boxSpawnChance: 0.1
   totalColors: 0
   spawnHeight: 0
   dropDuration: 0
@@ -447,7 +449,7 @@ Transform:
   m_GameObject: {fileID: 430526662}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.8753245, y: -4.3707166, z: -3258.4502}
+  m_LocalPosition: {x: 2.865324, y: -3.770717, z: -3258.4502}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -666,7 +668,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.5, y: -3, z: -2}
+  m_LocalPosition: {x: 3.49, y: -2.4, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -991,8 +993,8 @@ Transform:
   m_GameObject: {fileID: 1146055638}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.1302, y: 1.8286, z: 0}
+  m_LocalScale: {x: 0.79, y: 0.511875, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1658672212}

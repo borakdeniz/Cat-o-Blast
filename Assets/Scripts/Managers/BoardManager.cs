@@ -279,7 +279,6 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-
     // function to rename all gems with correct positions
     private void RenameAllGems()
     {
