@@ -230,10 +230,54 @@ public class BoardManager : MonoBehaviour
         // find and update gem icons to match the match count
         matchFinder.FindAutoMatches();
 
+        // check if there are still valid matches, if not, shuffle the board
+        if (matchFinder.autoMatches.Count == 0)
+        {
+            ShuffleBoard();
+        }
+
         // rename all gems in the hierarchy
         RenameAllGems();
     }
 
+    public void ShuffleBoard()
+    {
+        List<Gem> movableGems = new List<Gem>();
+
+        // collect all gems that are not obstacles
+        for (int row = 0; row < rows; row++)
+        {
+            for (int col = 0; col < columns; col++)
+            {
+                if (boardGems[row, col] != null && !boardGems[row, col].isObstacle)
+                {
+                    movableGems.Add(boardGems[row, col]);
+                }
+            }
+        }
+
+        // shuffle the list of movable gems
+        for (int i = 0; i < movableGems.Count; i++)
+        {
+            int randomIndex = Random.Range(i, movableGems.Count);
+            (movableGems[i], movableGems[randomIndex]) = (movableGems[randomIndex], movableGems[i]);
+        }
+
+        // reassign shuffled gems back into the board
+        int index = 0;
+        for (int row = 0; row < rows; row++)
+        {
+            for (int col = 0; col < columns; col++)
+            {
+                if (boardGems[row, col] != null && !boardGems[row, col].isObstacle)
+                {
+                    boardGems[row, col] = movableGems[index];
+                    boardGems[row, col].transform.localPosition = new Vector3(col, -row, 0);
+                    index++;
+                }
+            }
+        }
+    }
 
 
     // function to rename all gems with correct positions
